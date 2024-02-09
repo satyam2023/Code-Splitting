@@ -1,14 +1,18 @@
-import React, { Suspense } from 'react'
-import { Text, View } from 'react-native';
+import React, { Suspense, useState } from 'react'
+import { ActivityIndicator, Text, View } from 'react-native';
 const FirstComponent = React.lazy(() => import('../FirstView/FirstView'));
 const SecondComponent = React.lazy(() => import('../SecondView/SecondView'));
 
 const Splitter = () => {
+    const [loading,setloading]=useState<boolean>(false);
+    function setloader(param:boolean){
+        setloading(param);
+    }
   return (
    <View>
-    <Suspense fallback={<Text>Loading...</Text>}>
-  <FirstComponent/>
-  <SecondComponent/>
+    <Suspense fallback={<ActivityIndicator color={'red'}/>}>
+   {!loading?<FirstComponent />:
+   <SecondComponent/>}
       </Suspense>
     
    </View>
