@@ -11,9 +11,9 @@ const Splitter = () => {
   return (
    <View>
     <Suspense fallback={<ActivityIndicator color={'red'}/>}>
-   {!loading?<FirstComponent />:
-   <SecondComponent/>}
-      </Suspense>
+   {!loading?<FirstComponent setLoader={setloader}/>:
+   <SecondComponent setLoader={setloader}/>}
+    </Suspense>
     
    </View>
   )
